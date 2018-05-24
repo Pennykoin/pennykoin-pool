@@ -76,24 +76,18 @@ Comes with lightweight example front-end script which uses the pool's AJAX API.
 * [CryptoNote Forum](https://forum.cryptonote.org/)
 * [CryptoNote Universal Pool Forum](https://bitcointalk.org/index.php?topic=705509)
 * [Forknote](https://forknote.net)
-* [Charnacoin](https://charnacoin.com)
-
-### Pools Using This Software
-
-* http://democats.org
-* http://cryptonotepool.com/
+* [Pennykoin](https://pennykoin.com)
 
 Usage
 =====
 
 ### Requirements
 * Coin daemon(s) (find the coin's repo and build latest version from source)
-* Coin RPC wallet(s) for Charnacoin or Monero based cryptocurrency
-* simplewallet for Forknote based cryptocurrency (Bytecoin/Forknote v1.1.11).  Do NOT use Forknote 2.0.0, since it's in alpha
+* Coin RPC wallet(s) for Pennykoin
 * [Node.js](http://nodejs.org/) v0.10+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * [Redis](http://redis.io/) key-value store v2.6+ ([follow these instructions](http://redis.io/topics/quickstart))
 * libssl required for the node-multi-hashing module. For Ubuntu: `sudo apt-get install libssl-dev`
-
+NVM - https://github.com/creationix/nvm
 
 #### Seriously
 Those are legitimate requirements. If you use old versions of Node.js or Redis that may come with your system package manager then you will have problems. Follow the linked instructions to get the last stable versions.
@@ -107,14 +101,9 @@ you are using - a good place to start with redis is [data persistence](http://re
 #### Installation
 Installing pool on different Linux distributives is different because it depends on system default components and versions.
 
-##### On Ubuntu 14 LTS
-For now the easiest way to install pool is to use Ubuntu 14 LTS. Thus, all you had to do in order to prepare Ubuntu 14 for pool installation is to run:
-
-```bash
-sudo apt-get install git build-essential redis-server libboost1.55-all-dev nodejs-dev nodejs-legacy npm cmake libssl-dev
-```
-
 ##### On Ubuntu 16 LTS
+For now the easiest way to install pool is to use Ubuntu 14 LTS. Thus, all you had to do in order to prepare Ubuntu 16 for pool installation is to run:
+
 
 ```bash
 sudo apt-get install git build-essential redis-server libboost-all-dev nodejs-dev nodejs-legacy npm cmake libssl-dev
@@ -123,14 +112,7 @@ sudo apt-get install git build-essential redis-server libboost-all-dev nodejs-de
 Version 0.10.^ of Node.js is most suitable with the actual development stage.
 That said, since Ubuntu 16 come with version 4.^ of Node.js you will need to downgrade it (just to run the pool).
 
-```bash
-# install n to manage node version to use
-sudo npm install -g n
-# use node's version 0.10.^
-sudo n 0.10
-# you can change after to lastest node's LTS by running `sudo n lts`
-# learn more with `n --help`
-```
+DO this with NVM    type " nvm install 0.10.48 "
 
 #### 1) Downloading & Installing
 
@@ -138,7 +120,7 @@ sudo n 0.10
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-git clone https://github.com/charnacrypto/charnapool.git pool
+git clone https://github.com/pennykoin/pennykoin-pool
 cd pool
 npm update
 ```
@@ -156,16 +138,16 @@ cp website/config.sample.js website/config.js
 Explanation for each field:
 ```javascript
 /* Used for storage in redis so multiple coins can share the same redis instance. */
-"coin": "charnacoin",
+"coin": "pennykoin",
 
 /* Used for front-end display */
-"symbol": "chrc",
+"symbol": "PK",
 
 /* Minimum units in a single coin, see COIN constant in DAEMON_CODE/src/cryptonote_config.h */
-"coinUnits": 100000000,
+"coinUnits": 100,
 
 /* Coin network time to mine one block, see DIFFICULTY_TARGET constant in DAEMON_CODE/src/cryptonote_config.h */
-"coinDifficultyTarget": 60,
+"coinDifficultyTarget": 180,
 
 "logging": {
 
@@ -201,7 +183,7 @@ Explanation for each field:
     "clusterForks": "auto",
 
     /* Address where block rewards go, and miner payments come from. */
-    "poolAddress": "Cjo7trECi42f2Ph7BJtxc5e2fGtmpVkXLYyE5ynhnnf41p4n9oN3zn696muBZX6CBca8q1c46T5H8ZSKhLHtR2MGCrjLyoZ"
+    "poolAddress": "your pool wallet goes here"
 
     /* Poll RPC daemons for new blocks every this many milliseconds. */
     "blockRefreshInterval": 1000,
@@ -315,13 +297,13 @@ Explanation for each field:
 /* Coin daemon connection details. */
 "daemon": {
     "host": "127.0.0.1",
-    "port": 18091
+    "port": 53280
 },
 
 /* Wallet daemon connection details. */
 "wallet": {
     "host": "127.0.0.1",
-    "port": 18093
+    "port": 53281
 },
 
 /* Redis connection into. */
@@ -552,7 +534,7 @@ Credits
 * [Wolf0](https://bitcointalk.org/index.php?action=profile;u=80740) - Helped try to deobfuscate some of the daemon code for getting a bug fixed
 * [Tacotime](https://bitcointalk.org/index.php?action=profile;u=19270) - helping with figuring out certain problems and lead the bounty for this project's creation
 * [fancoder](https://github.com/fancoder/) - See his repo for the changes
-
+* JB from hashpool.frl  Put together modules from various pools to make pennykoin-pool function properly
 License
 -------
 Released under the GNU General Public License v2
