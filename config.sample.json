@@ -1,8 +1,8 @@
 {
-    "coin": "charnacoin",
-    "symbol": "CHRC",
-    "coinUnits": 100000000,
-    "coinDifficultyTarget": 60,
+    "coin": "pennykoin",
+    "symbol": "PK",
+    "coinUnits": 100,
+    "coinDifficultyTarget": 180,
 
     "logging": {
         "files": {
@@ -19,24 +19,24 @@
     "poolServer": {
         "enabled": true,
         "clusterForks": "auto",
-        "poolAddress": "CmN7nY3GHd3hWn3P9HMdecEt8PAEp1ugS33zrkeefqsmMQFhNfcxrQpSHUiwBg9td97BCeghrjBYeZJJDuVB5BP8NZUbWZN",
+        "poolAddress": "***putwallethere***",
         "blockRefreshInterval": 1000,
         "minerTimeout": 900,
         "ports": [
             {
-                "port": 2333,
-                "difficulty": 100,
-                "desc": "Low end hardware"
+                "port": 3333,
+                "difficulty": 1000,
+                "desc": "CPU"
             },
             {
-                "port": 2555,
-                "difficulty": 2000,
-                "desc": "Mid range hardware"
+                "port": 5555,
+                "difficulty": 5000,
+                "desc": "GPU"
             },
             {
-                "port": 2777,
-                "difficulty": 10000,
-                "desc": "High end hardware"
+                "port": 7777,
+                "difficulty": 100000,
+                "desc": "Other"
             },
             {
                 "port": 2999,
@@ -102,7 +102,7 @@
         "enabled": true,
         "hashrateWindow": 600,
         "updateInterval": 5,
-        "port": 8113,
+        "port": 8111,
         "blocks": 30,
         "payments": 30,
         "password": "your_password"
@@ -110,12 +110,12 @@
 
     "daemon": {
         "host": "127.0.0.1",
-        "port": 18091
+        "port": 53280
     },
 
     "wallet": {
         "host": "127.0.0.1",
-        "port": 18093
+        "port": 53281
     },
 
     "redis": {
